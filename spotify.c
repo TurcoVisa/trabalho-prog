@@ -73,6 +73,17 @@ void curtirMusica(Musica playlist[], int qtd, int id) {
         playlist[buscarPorId(playlist, qtd, id)].curtidas++;
     }
 }
+
+void musicaMaisCurtida(Musica playlist[], int qtd) {
+    int maior = 0;
+    for(int i = 0; i<qtd; i++) {
+        if(playlist[i].curtidas>playlist[maior].curtidas) {
+            maior = i;
+        }
+    }
+    printf("%s\n", playlist[maior].nome);
+}
+
 int main(){
 
     int opcao;
@@ -90,7 +101,7 @@ int main(){
         printf("(7) Calcular duracao total da Playlist\n");
         printf("(8) Ordenar Playlist por nome\n");
         printf("(9) Ordenar Playlist por curtidas\n");
-        printf("(10) Mostrar estatísticas da Playlist \n");
+        printf("(10) Mostrar estatisticas da Playlist \n");
         printf("(11) Encerrar programa\n");
         scanf("%d", &opcao);
 
@@ -133,7 +144,7 @@ int main(){
             curtirMusica(playlist, tamanho, idCurtida);
             break;
         case 6:
-            /* code */
+            musicaMaisCurtida(playlist, tamanho);
             break;
         case 7:
             /* code */
