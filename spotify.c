@@ -118,11 +118,11 @@ int main(){
             break;
         case 3:
             int idx, indexID;
-            printf("insira o ID que voce quer encontrar");
+            printf("insira o ID que voce quer encontrar\n");
             scanf("%d", & idx);
             indexID = buscarPorId(playlist, tamanho, idx);
             if(indexID== -1) {
-                printf("indice nao encontrado");
+                printf("indice nao encontrado\n");
             } else {
                 printf("nome: %s\n", playlist[indexID].nome);
                 printf("artista: %s\n", playlist[indexID].artista);
@@ -162,7 +162,7 @@ int main(){
             
             break;
         default:
-            printf("opcao invalida");
+            printf("opcao invalida\n");
             break;
         }
         
