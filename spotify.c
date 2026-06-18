@@ -84,6 +84,23 @@ void musicaMaisCurtida(Musica playlist[], int qtd) {
     printf("%s\n", playlist[maior].nome);
 }
 
+void mostrarEstatisticas(Musica playlist[], int qtd) {
+    printf("A playlist tem %d ", qtd);
+    printf("musicas\n");
+    int totalCurtidas = 0;
+    for(int i = 0; i<qtd; i++) {
+        totalCurtidas = totalCurtidas + playlist[i].curtidas;
+    }
+    printf("o total de curtidas e %d\n", totalCurtidas);
+    printf("a média de curtidas por musica e de %d\n", totalCurtidas/qtd);
+    int totalSegundos = 0;
+    for(int i = 0; i<qtd; i++) {
+        totalSegundos = totalSegundos + playlist[i].duracao;
+    }
+    printf("a duracao media das musicas e de %d ", totalSegundos/qtd);
+    printf("segundos\n");
+}
+
 int main(){
 
     int opcao;
@@ -156,7 +173,7 @@ int main(){
             /* code */
             break;
         case 10:
-            /* code */
+            mostrarEstatisticas(playlist, tamanho);
             break;  
         case 11:
             
