@@ -59,7 +59,7 @@ void listarPorArtista(Musica playlist[], int qtd, char artista[]) {
 
 void curtirMusica(Musica playlist[], int qtd, int id) {
     if(buscarPorId(playlist, qtd, id) == -1) {
-        printf("id não encontrado\n");
+        printf("id nao encontrado\n");
     } else {
         playlist[buscarPorId(playlist, qtd, id)].curtidas++;
     }
@@ -72,7 +72,12 @@ void musicaMaisCurtida(Musica playlist[], int qtd) {
             maior = i;
         }
     }
-    printf("%s\n", playlist[maior].nome);
+    printf("Nome: %s\n ", playlist[maior].nome);
+    printf("ID: %d\n ", playlist[maior].id);
+    printf("Artista: %s\n ", playlist[maior].artista);
+    printf("Genero: %s\n ", playlist[maior].genero);
+    printf("Duracao(segundos): %d\n ", playlist[maior].duracao);
+    printf("Curtidas: %d\n ", playlist[maior].curtidas);
 }
 
 int duracaoTotal(Musica playlist[], int qtd) {
@@ -91,21 +96,25 @@ void mostrarEstatisticas(Musica playlist[], int qtd) {
         totalCurtidas = totalCurtidas + playlist[i].curtidas;
     }
     printf("o total de curtidas e %d\n", totalCurtidas);
-    printf("a média de curtidas por musica e de %d\n", totalCurtidas/qtd);
+    printf("a media de curtidas por musica e de %d\n", totalCurtidas/qtd);
     printf("a duracao media das musicas e de %d ", duracaoTotal(playlist, qtd)/qtd);
     printf("segundos\n");
 }
-void ordernarPorNome(Musica playlist[],int qtd){
-    int i,j,temp;
-    for(i=0;i<qtd-1;i++){
-        for(j=0;j<qtd-i-1;j++){
-            if(playlist[j].nome>playlist[j+1].nome){
-                temp=playlist[j].nome;
-                playlist[j+1].nome=temp;
+void ordenarPorTitulo(Musica playlist[], int qtd) {
+    int i, j;
+    Musica temp;
+    
+    for (i = 0; i < qtd - 1; i++) {
+        for (j = 0; j < qtd - i - 1; j++) {
+            if (strcasecmp(playlist[j].nome, playlist[j + 1].nome) > 0) {
+                temp = playlist[j];
+                playlist[j] = playlist[j + 1];
+                playlist[j + 1] = temp;
             }
         }
     }
 }
+
 void ordernarPorcurtidas(Musica playlist[],int qtd){
     int i,j,temp;
     for(i=0;i<qtd-1;i++){
@@ -155,7 +164,7 @@ int main(){
             scanf("%d", & idx);
             indexID = buscarPorId(playlist, tamanho, idx);
             if(indexID== -1) {
-                printf("indice nao encontrado\n");
+                printf("ID nao encontrado\n");
             } else {
                 printf("nome: %s\n", playlist[indexID].nome);
                 printf("artista: %s\n", playlist[indexID].artista);
@@ -184,7 +193,7 @@ int main(){
             printf("segundos\n");
             break;
         case 8:
-            ordernarPorNome(playlist,tamanho); 
+            ordenarPorTitulo(playlist,tamanho); 
             break;
         case 9:
             ordernarPorcurtidas(playlist,tamanho);
@@ -199,7 +208,8 @@ int main(){
             printf("opcao invalida\n");
             break;
         }
-        
+
     } while(opcao != 11);
     return 0;
 }
+
