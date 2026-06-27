@@ -20,7 +20,7 @@ int buscarPorId(Musica playlist[], int qtd, int id) {
     return -1;
 }
 
-
+    
 int cadastrarMusica(Musica playlist[], int qtd) {
     int idx;
     printf("insira o ID\n");
@@ -116,12 +116,14 @@ void ordenarPorTitulo(Musica playlist[], int qtd) {
 }
 
 void ordernarPorcurtidas(Musica playlist[],int qtd){
-    int i,j,temp;
+    int i,j;
+    Musica temp;
     for(i=0;i<qtd-1;i++){
         for(j=0;j<qtd-i-1;j++){
             if(playlist[j].curtidas>playlist[j+1].curtidas){
-                temp=playlist[j].curtidas;
-                playlist[j+1].curtidas=temp;
+                temp=playlist[j];
+                playlist[j] = playlist[j+1];
+                playlist[j+1] = temp;
             }
         }
     }
@@ -212,4 +214,3 @@ int main(){
     } while(opcao != 11);
     return 0;
 }
-
